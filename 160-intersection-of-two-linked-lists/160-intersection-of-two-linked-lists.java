@@ -55,38 +55,52 @@ public class Solution {
 //             We will find the difference in the length of both the linkedList
 //             and to the smallest length linkedList move our pointer by 1 to the next node
 //             and then simply iterate over firstlinked list and increase the both pointer by 1
+//             Time Complexity - O(2max(length of list1,length of list2))+O(abs(length of list1-length of list2))+O(min(length of list1,length of list2)) -> O(K)
+//                 Space Complexity -O(1)
+                
+        //     int diff=getDiff(head1,head2);
+        //     if(diff<0)
+        //     {
+        //         //ll two is greater in size
+        //         while(diff++ !=0)head2=head2.next;
+        //     }else
+        //     {
+        //         //ll one is greater in size
+        //         while(diff--!=0)head1=head1.next;
+        //     }
+        // while(head1!=null)
+        // {
+        //     if(head1==head2)return head1;
+        //     head1=head1.next;
+        //     head2=head2.next;
+        // }
+        // return null;
+//         Method 4-
+//             the concept is same as above but with diff. approach
             
-            int diff=getDiff(head1,head2);
-            if(diff<0)
-            {
-                //ll two is greater in size
-                while(diff++ !=0)head2=head2.next;
-            }else
-            {
-                //ll one is greater in size
-                while(diff--!=0)head1=head1.next;
-            }
-        while(head1!=null)
-        {
-            if(head1==head2)return head1;
-            head1=head1.next;
-            head2=head2.next;
-        }
-        return null;
+           ListNode d1 = head1;
+           ListNode d2 = head2;
+    
+            while(d1 != d2) {
+                d1 = d1 == null? head2:d1.next;
+                d2 = d2 == null? head1:d2.next;
+              }
+    
+            return d1;
     }
-    public int getDiff(ListNode head1,ListNode head2)
-    {
-        int i=0,j=0;
-        while(head1!=null)
-        {
-            i++;
-            head1=head1.next;
-        }
-        while(head2!=null)
-        {
-            j++;
-            head2=head2.next;
-        }
-        return i-j; //if negative that means length of second ll is greater
-    }
+    // public int getDiff(ListNode head1,ListNode head2)
+    // {
+    //     int i=0,j=0;
+    //     while(head1!=null)
+    //     {
+    //         i++;
+    //         head1=head1.next;
+    //     }
+    //     while(head2!=null)
+    //     {
+    //         j++;
+    //         head2=head2.next;
+    //     }
+    //     return i-j; //if negative that means length of second ll is greater
+    // }
 }
