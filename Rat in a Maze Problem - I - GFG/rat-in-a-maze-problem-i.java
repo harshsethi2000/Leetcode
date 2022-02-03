@@ -42,9 +42,38 @@ class Solution {
             for(int j=0;j<n;j++)vis[i][j]=0;
         }
         ArrayList<String> ans=new ArrayList<>();
-        if(m[0][0]==1)mazeSolution(0,0,n,m,ans,"",vis);
+        //if(m[0][0]==1)mazeSolution(0,0,n,m,ans,"",vis);
+        int [] RI={1,0,0,-1};
+        int [] CI={0,-1,+1,0};
+        
+        if(m[0][0]==1)mazeSolutionMethodTwo(0,0,n,m,ans,"",vis,RI,CI);
+        
         return ans;
     }
+    public static void mazeSolutionMethodTwo(int i,int j,int n,int[][] m,ArrayList<String> ans,String move,int[][] vis,int [] RI,int [] CI)
+    {
+        if(i==n-1 && j==n-1)
+        {
+            ans.add(move);
+            return;
+        }
+        String moves="DLRU";
+        for(int index=0;index<4;index++)
+        {
+            int tmpI=i+RI[index];
+            int tmpJ=j+CI[index];
+            
+            if(tmpI >= 0 && tmpJ>=0 &&tmpI<n && tmpJ<n && vis[tmpI][tmpJ]==0 && m[tmpI][tmpJ]==1)
+            {
+                vis[i][j]=1;
+                mazeSolutionMethodTwo(tmpI,tmpJ,n,m,ans,move+moves.charAt(index),vis,RI,CI);
+                vis[i][j]=0;
+            }
+            
+        }
+        
+    }
+    
     public static void mazeSolution(int i,int j,int n,int[][] m,ArrayList<String> ans,String move,int[][] vis)
     {
         if(i==n-1 && j==n-1)
