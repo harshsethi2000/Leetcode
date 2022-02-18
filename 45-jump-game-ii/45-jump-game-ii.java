@@ -7,8 +7,9 @@ class Solution {
     }
     public int minJump(int index,int k,int [] nums,int[] dp)
     {
+        if(index>=nums.length)return 10001;
         if(index==nums.length-1)return 0;
-        if(index>=nums.length)return 0;
+      
         if(dp[index]!=-1)return dp[index];
         int ans=10001;
         for(int i=1;i<=k;i++)
