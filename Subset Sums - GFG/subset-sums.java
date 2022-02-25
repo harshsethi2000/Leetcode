@@ -35,22 +35,17 @@ class Solution{
     ArrayList<Integer> subsetSums(ArrayList<Integer> arr, int N){
         // code here
         ArrayList<Integer> ls=new ArrayList<>();
-        calculateSubsetSum(0,0,arr,ls);
+        getSum(0,0,ls,arr);
         return ls;
-        
     }
-    public void calculateSubsetSum(int index,int sum,ArrayList<Integer> arr,ArrayList<Integer> ls)
+    public void getSum(int index,int sum,ArrayList<Integer> ls,ArrayList<Integer> arr)
     {
-        if(index>=arr.size())
+        if(index==arr.size())
         {
-            ls.add(sum);
-            return;
+         ls.add(sum);
+         return;
         }
-        sum=sum+arr.get(index);
-        calculateSubsetSum(index+1,sum,arr,ls);
-        sum=sum-arr.get(index);
-        calculateSubsetSum(index+1,sum,arr,ls);
+        getSum(index+1,sum+arr.get(index),ls,arr);
+        getSum(index+1,sum,ls,arr);
     }
-
-
 }
