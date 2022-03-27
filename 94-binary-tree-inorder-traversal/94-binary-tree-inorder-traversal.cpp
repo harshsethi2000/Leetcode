@@ -9,46 +9,41 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-//Iterative Solution
+// class Solution {
+// public:
+//     vector<int> inorderTraversal(TreeNode* root) {
+//         vector<int> ans;
+//         if(root==NULL)return ans;
+//         inorder(root,ans);
+//         return ans;
+//     }
+//     void inorder(TreeNode * root,vector<int> & ans)
+//     {
+//         if(root==NULL)return;
+//         inorder(root->left,ans);
+//         ans.push_back(root->val);
+//         inorder(root->right,ans);
+//     }
+// };
+
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-       vector<int> v;
-        if(root==NULL)return v;
+        vector<int> ans;
+        if(root==NULL)return ans;
         stack<TreeNode *> s;
         for(TreeNode *t=root;t!=NULL;t=t->left)s.push(t);
         while(!s.empty())
         {
-         TreeNode *tmp=s.top();
+            TreeNode *t=s.top();
             s.pop();
-            v.push_back(tmp->val);
-            if(tmp->right!=NULL)
+            ans.push_back(t->val);
+            if(t->right!=NULL)
             {
-                for(TreeNode *t=tmp->right;t!=NULL;t=t->left)s.push(t);        
+                for(TreeNode *tmp=t->right;tmp!=NULL;tmp=tmp->left)s.push(tmp);        
             }
         }
-        return v;
-        
+        return ans;
     }
-   
 };
-//Method 2-
-// Recursive Solution
 
-// class Solution {
-// public:
-//     vector<int> inorderTraversal(TreeNode* root) {
-//        vector<int> v;
-//         if(root==NULL)return v;
-//         traversal(root,v);
-//         return v;
-        
-//     }
-//     void traversal(TreeNode * root,vector<int> &v)
-//     {
-//         if(root==NULL)return;
-//         traversal(root->left,v);
-//         v.push_back(root->val);
-//         traversal(root->right,v);
-//     }
-// };
