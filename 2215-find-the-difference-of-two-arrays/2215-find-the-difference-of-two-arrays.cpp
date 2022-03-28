@@ -1,8 +1,8 @@
 class Solution {
 public:
     vector<vector<int>> findDifference(vector<int>& nums1, vector<int>& nums2) {
-        set<int> s1;
-        set<int> s2;
+        unordered_set<int> s1;
+        unordered_set<int> s2;
         for(int i=0;i<nums1.size();i++)
         {
             s1.insert(nums1[i]);
@@ -13,8 +13,8 @@ public:
         }
         
         vector<vector<int>> ans(2);
-        set<int>::iterator it1;
-        set<int>::iterator it2;
+        unordered_set<int>::iterator it1;
+        unordered_set<int>::iterator it2;
         
         for (it1=s1.begin(); it1!=s1.end(); ++it1)
         {
