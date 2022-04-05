@@ -26,7 +26,11 @@ public:
             int k=min(height[i],height[j]);
             ans=max(ans,k*(j-i));
             if(height[i]<height[j])i++;
-            else j--;
+            else if(height[i]>height[j])j--;
+            else 
+            {
+                i++;j--;
+            }
             
         }
         return ans;
